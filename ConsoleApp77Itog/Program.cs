@@ -7,19 +7,12 @@ namespace ConsoleApp77Itog
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Product product = new Product();
-            
-            product.Price = -3;
-
+           
             Basket basket = new Basket();
-            var order = basket.ConvertToOrder<HomeDelivery>();
-
+            var Order = basket.ConvertToOrder<HomeDelivery>();
+            // ...
         }
-
     }
-
-
     #region  Перечисления
 
     /// <summary>
@@ -104,7 +97,7 @@ namespace ConsoleApp77Itog
     #endregion Свойства товаров
 
     /// <summary>
-    /// Товар
+    /// Класс Товар
     /// </summary>
     class Product
     {
@@ -112,14 +105,25 @@ namespace ConsoleApp77Itog
         /// наименование товара
         /// </summary>
         public string name;
-        private double price; // цена товара
-        public string description; // описание товара
-        public Unit unit; // ед. измерения товара
+        /// <summary>
+        /// цена товара
+        /// </summary>
+        private double price;
+        /// <summary>
+        /// описание товара
+        /// </summary>
+        public string description;
+        /// <summary>
+        /// ед. измерения товара
+        /// </summary>
+        public Unit unit; 
         /// <summary>
         /// набор характеристик для товара
         /// </summary>
         public Property[] properties;
-
+        /// <summary>
+        /// свойство цены товара
+        /// </summary>
         public double Price
         {
             get
@@ -138,22 +142,22 @@ namespace ConsoleApp77Itog
                 }
             }
         }
-
-
     }
-
-
 
     /// <summary>
     /// строка табличной части заказа
     /// </summary>
     class ProductRow
     {
-
         public Product product;
+        /// <summary>
+        /// Количество товара
+        /// </summary>
         public int quantity;
+        /// <summary>
+        /// расчет стоимости товара (цена*количество)
+        /// </summary>
         public double Sum { get { return product.Price * quantity; } }
-
     }
 
     /// <summary>
@@ -174,17 +178,20 @@ namespace ConsoleApp77Itog
             return new Order<T>();
 
         }
-
-
-
     }
-
+    /// <summary>
+    /// клиент (имя, телефон)
+    /// </summary>
     class Customer
     {
         public string name;
         public string phone;
     }
 
+    /// <summary>
+    /// заказ
+    /// </summary>
+    /// <typeparam name="TDelivery"></typeparam>
     class Order<TDelivery> where TDelivery : Delivery
     {
         public TDelivery Delivery;
@@ -196,30 +203,33 @@ namespace ConsoleApp77Itog
         {
             Console.WriteLine(Delivery.Address);
         }
-
-        // ... Другие поля
     }
+    /// <summary>
+    /// доставка
+    /// </summary>
     abstract class Delivery
     {
         public string Address;
     }
-
+    /// <summary>
+    /// доставка на дом
+    /// </summary>
     class HomeDelivery : Delivery
     {
-        /* ... */
+        
     }
-
+    /// <summary>
+    /// доставка в пункт выдачи
+    /// </summary>
     class PickPointDelivery : Delivery
     {
-        /* ... */
+        
     }
-
+    /// <summary>
+    /// доставка в магазин
+    /// </summary>
     class ShopDelivery : Delivery
     {
-        /* ... */
+        
     }
-
-
-
-
 }
