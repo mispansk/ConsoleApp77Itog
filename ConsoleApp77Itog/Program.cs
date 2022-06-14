@@ -78,7 +78,7 @@ namespace ConsoleApp77Itog
     }
 
     /// <summary>
-    /// 
+    /// цвет товара
     /// </summary>
     public class ColorProp : Property
     {
